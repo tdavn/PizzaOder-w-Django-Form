@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Order</title>
-</head>
-<body>
-<h1>Order now</h1>
-<h3>{{note}}</h3>
-<h2>On the second thought?</h2>
-        <form method="POST" action="{% url 'order' %}">
-            {% csrf_token %}
-            {{ banhmiform }}
-            {{ form.as_p }}
-            <input type="submit" value="Change Pizza">
+{% extends 'banhmi/base.html' %}
+{% block 'body' %}
+    {% load widget_tweaks %}
+    <div class="container">
+    <h1>Order now</h1>
+    <h3>{{note}}</h3>
+    {% if created_banhmi_pk %}
+    <a href="{% url 'edit_order' created_banhmi_pk %}">Edit your Oder</a>
+    {% endif %}
+    <h2>Information:</h2>
+            <form method="POST" action="{% url 'order' %}">
+                {% csrf_token %}
+                {% for field in banhmiform %}
+                <div class="form-group">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {% render_field field class='form-control' %}
+                    <br>
+                </div>
+                {% endfor %}
+                <input type="submit" value="Oder">
+            </form>
+        <br><br>
+        Want more than one bun?
+        <form action="{% url 'banhmis' %}" method="get">
+            {{ multiple_form }}
+            <input type="submit" value="Get Pizzas">
         </form>
-</body>
-</html>
+    </div>
+
+{% endblock %}
+
+

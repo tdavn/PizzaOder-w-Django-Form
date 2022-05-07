@@ -1,0 +1,15 @@
+{% extends 'banhmi/base.html' %}
+{% block 'body' %}
+    {% load widget_tweaks %}
+    <h1>Edit Banhmi</h1>
+
+    <form method="POST" action="{% url 'edit_order' banhmi.id %}">
+                {% csrf_token %}
+                {{ banhmiform }}
+
+                <input type="submit" value="Change Pizza">
+            </form>
+    <p>{{ note }}</p>
+    <p>topping 1: {{ banhmiform.topping1.value }}</p>
+
+{% endblock %}
