@@ -7,6 +7,12 @@ from .models import Banhmi
 class HomeView(FormView):
     template_name = 'banhmi/index.html'
     form_class = BanhmiForm
+    context = {'form': form_class}
+    success_url = 'banhmi/order.html'
+
+    def form_valid(self, form):
+        return super().form_valide(form)
+
 
 def order(request):
     multiple_form = MultipleBanhmiForm()

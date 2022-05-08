@@ -2,9 +2,76 @@
 {% load static %}
 {% block 'body' %}
     {% load widget_tweaks %}
-    <div class="text-center">
-        {% load static %}
-        <img src="{% static 'banhmi.jpg' %}" width="500" class="img-fluid" alt="Banhmi-Vietnamese cuisine">
-    </div>
 
+
+    <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+            <figure class="figure">
+              <img src="{% static 'banhmi.jpg' %}" class="figure-img img-fluid rounded" alt="Banhmi.">
+              <figcaption class="figure-caption text-right">Banhmi is one of the most popular foods of Vietnam in the world.</figcaption>
+            </figure>
+<!--            <img src="{% static 'banhmi.jpg' %}" class="rounded img-fluid" alt="Banhmi-Vietnamese cuisine">-->
+        </div>
+        <div class="col-8">
+            <div class="text-center">
+                <h1>Vietnamese Cuisine</h1>
+
+            </div>
+            <p>In Vietnamese cuisine, bánh mì or banh mi /ˈbænmî/, "bread") is a short baguette with thin,
+                crisp crust and soft, airy texture. It is often split lengthwise and filled with savory
+                ingredients like a submarine sandwich and served as a meal, called bánh mì thịt. Plain
+                banh mi is also eaten as a staple food.</p>
+
+            <p>A typical Vietnamese roll or sandwich is a fusion of meats and vegetables from native Vietnamese
+                cuisine such as chả lụa (pork sausage), coriander leaf (cilantro), cucumber, pickled carrots,
+                and pickled daikon combined with condiments from French cuisine such as pâté, along with red
+                chili and buttery mayonnaise.[7] However, a wide variety of popular fillings are used, from xíu
+                mại (a Chinese cuisine) to even ice cream. In Vietnam, bread rolls and sandwiches are typically
+                eaten for breakfast or as a snack.</p>
+
+        </div>
+      </div>
+      <div class="row">
+          <p>The baguette was introduced to Vietnam by the French in the mid-19th century, during the Nguyễn
+                dynasty and became a staple food by the early 20th century. During the 1950s, a distinctly
+                Vietnamese style of sandwich developed in Saigon, becoming a popular street food, also known as
+                bánh mì Sài Gòn ("Saigon sandwich", "Saigon-style banh mi").[8][9] Following the Vietnam War,
+                Overseas Vietnamese popularized the bánh mì sandwich in countries such as Australia, Canada and
+                the United States. In these countries they are commonly sold in Asian bakeries.</p>
+      </div>
+      <div class="row">
+        <div class="col-6">
+            <div class="text-center">
+                <h1>Quick Order!</h1>
+                <form method="POST" action="{% url 'order' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {% render_field field class='form-control' %}
+                        <br>
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="Oder">
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="text-center">
+                <h1>Menu</h1>
+            </div>
+                <ol>
+                    <li>banhmi 1</li>
+                    <li>banhmi 2</li>
+                </ol>
+
+        </div>
+      </div>
+    </div>
+    <br><br>
 {% endblock %}
